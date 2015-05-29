@@ -1,7 +1,6 @@
-env.PATH="${tool 'mvn-3.2.2'}/bin:${env.PATH}"
-
 stage 'build' {
 	node('jdk7') {
+		env.PATH="${tool 'mvn-3.2.2'}/bin:${env.PATH}"
 		sh 'mvn clean package'
 		archive 'target/*.war'
 	}
