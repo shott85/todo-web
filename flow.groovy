@@ -1,19 +1,19 @@
-stage 'build' {
+stage 'build' 
+
 	node('jdk7') {
 		env.PATH="${tool 'mvn-3.2.2'}/bin:${env.PATH}"
 		sh 'mvn clean package'
 		archive 'target/*.war'
 	}
-}
 
+stage 'integration-test' 
 
-stage 'integration-test' {
 	node('jdk7') {
 		sh 'mvn verify'
 	}
-}
 
-stage 'quality-and-functional-test'{
+stage 'quality-and-functional-test'
+
 	parallel(qualityTest: {
         runWithServer {url ->
         	node('jdk7') {
@@ -27,8 +27,8 @@ stage 'quality-and-functional-test'{
             // build 'sauce-labs-test'
         }
     })
-}
 
-stage 'production' {
+stage 'production'
+	echo 'mvn cargo:deploy'
 	// sh 'puppet apply manifest.pp'
-}
+
