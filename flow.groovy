@@ -5,8 +5,7 @@ node('jdk7') {
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/apemberton/todo-web.git']]])
 		env.PATH="${tool 'mvn-3.2.2'}/bin:${env.PATH}"
 		sh 'mvn clean package'
-		archive pom.xml
-		archive 'target/**'
+		archive 'target/*.war'
 
 	stage 'integration-test' 
 
