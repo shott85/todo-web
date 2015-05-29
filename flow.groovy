@@ -15,17 +15,13 @@ node('jdk7') {
 stage 'quality-and-functional-test'
 
 	parallel(qualityTest: {
-        runWithServer {url ->
-        	node('jdk7') {
-        		echo 'sonar scan'
-            	// sh 'mvn sonar:sonar'
-        	}
-        }
+    	node('jdk7') {
+    		echo 'sonar scan'
+        	// sh 'mvn sonar:sonar'
+    	}
     }, functionalTest: {
-        runWithServer {url ->
-        	echo 'selenium test'
-            // build 'sauce-labs-test'
-        }
+    	echo 'selenium test'
+        // build 'sauce-labs-test'
     })
 
 stage 'production'
