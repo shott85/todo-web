@@ -1,4 +1,4 @@
-node('jdk7') {
+node('linux') {
 
 	stage 'build'
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/apemberton/todo-web.git']]])
@@ -8,7 +8,7 @@ node('jdk7') {
 
 	stage 'integration-test' 
 		sh 'mvn verify'
-		step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml', healthScaleFactor: 1.0])
+		//step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml', healthScaleFactor: 1.0])
 }
 
 stage 'quality-and-functional-test'
