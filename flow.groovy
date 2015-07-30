@@ -14,7 +14,7 @@ node('linux') {
 stage 'quality-and-functional-test'
 
 	parallel(qualityTest: {
-    	node('jdk7') {
+    	node('linux') {
     		echo 'sonar scan'
         	// sh 'mvn sonar:sonar'
     	}
