@@ -2,7 +2,7 @@ node('linux') {
 
 	stage 'build'
 		sh 'env' //print all available env vars
-		git url: 'https://github.com/shott85/todo-web', branch: 'develop'
+		git url: 'https://github.com/shott85/todo-web', branch: 'develop', poll: 'true'
 		env.PATH="${tool 'M3'}/bin:${env.PATH}"
 		sh 'mvn clean package'
 		archive 'target/*.war'
