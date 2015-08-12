@@ -2,7 +2,7 @@ node('linux') {
 
 	stage 'build'
 		sh 'env' //print all available env vars
-		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/apemberton/todo-web.git']]])
+		git url: 'https://github.com/shott85/todo-web', branch: 'develop'
 		env.PATH="${tool 'M3'}/bin:${env.PATH}"
 		sh 'mvn clean package'
 		archive 'target/*.war'
