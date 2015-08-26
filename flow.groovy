@@ -32,7 +32,7 @@ stage 'quality-and-functional-test'
 
 
 stage 'approval'
-	input 'Do you approve deployment to production?'
+	def ret = input id: 'ApproveDeployment', message: 'Please approve', parameters: [[$class: 'StringParameterDefinition', defaultValue: '', description: '', name: 'comments']]
 
 stage 'production'
 	echo 'mvn cargo:deploy'
