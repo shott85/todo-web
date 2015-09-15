@@ -9,7 +9,7 @@ node('linux') {
 
 	stage 'integration-test' 
 		sh 'mvn verify'
-		step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml', healthScaleFactor: 1.0])
+		//step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml', healthScaleFactor: 1.0])
 }
 
 stage 'quality-and-functional-test'
